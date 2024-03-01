@@ -1,0 +1,19 @@
+name: Generate PDF
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate PDF
+        run: |
+          sudo apt-get install -y texlive
+          pandoc README.md -s -o README.pdf
